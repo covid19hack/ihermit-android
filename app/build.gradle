@@ -53,6 +53,10 @@ dependencies {
 
     implementation "org.permissionsdispatcher:permissionsdispatcher-ktx:1.0.0-alpha2"
 
+    implementation "com.squareup.moshi:moshi-kotlin:1.9.2"
+    implementation "com.squareup.retrofit2:retrofit:2.8.1"
+    implementation "com.squareup.retrofit2:converter-moshi:2.8.1"
+
     implementation "com.google.android.gms:play-services-location:17.0.0"
 
     implementation "com.google.dagger:dagger:2.27"
