@@ -14,6 +14,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:hint="@string/email_address_hint"
+        app:hintTextAppearance="?attr/textAppearanceBody1"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text|textEmailAddress"
-            android:lines="1" />
+            android:lines="1"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -35,11 +38,13 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         android:hint="@string/password_hint"
+        app:hintTextAppearance="?attr/textAppearanceBody1"
         app:layout_constraintBottom_toTopOf="@+id/authBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="?attr/colorAccent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_field"
@@ -47,7 +52,9 @@
             android:layout_height="wrap_content"
             android:imeOptions="actionGo"
             android:inputType="textPassword"
-            android:lines="1" />
+            android:lines="1"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
