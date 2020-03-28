@@ -1,4 +1,4 @@
-package com.ihermit.app.ui.login
+package com.ihermit.app.ui.auth.login
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.ihermit.app.R
 import com.ihermit.app.databinding.LoginFragmentBinding
 import dagger.android.support.DaggerFragment
@@ -18,10 +19,6 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @FlowPreview
 class LoginFragment : DaggerFragment(R.layout.login_fragment) {
-
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -37,8 +34,12 @@ class LoginFragment : DaggerFragment(R.layout.login_fragment) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.events.collect {
                 when (it) {
-                    LoginViewModel.Event.LoggedIn -> TODO()
-                    LoginViewModel.Event.Registered -> TODO()
+                    LoginViewModel.Event.LoggedIn -> {
+                        TODO("to main activity")
+                    }
+                    LoginViewModel.Event.Registered -> {
+                        findNavController().navigate(LoginFragmentDirections.toHomeSetupFragment())
+                    }
                 }
             }
         }

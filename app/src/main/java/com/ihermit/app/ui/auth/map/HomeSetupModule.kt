@@ -1,4 +1,4 @@
-package com.ihermit.app.ui.login
+package com.ihermit.app.ui.auth.map
 
 import androidx.lifecycle.ViewModel
 import com.ihermit.app.di.ViewModelBuilderModule
@@ -9,16 +9,18 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class LoginModule {
+abstract class HomeSetupModule {
+
     @ContributesAndroidInjector(
         modules = [
             ViewModelBuilderModule::class
         ]
     )
-    internal abstract fun loginFragment(): LoginFragment
+    internal abstract fun homeSetupModule(): HomeSetupFragment
 
     @Binds
     @IntoMap
-    @ViewModelClass(LoginViewModel::class)
-    abstract fun bindViewModel(loginViewModel: LoginViewModel): ViewModel
+    @ViewModelClass(HomeSetupViewModel::class)
+    abstract fun bindViewModel(homeSetupViewModel: HomeSetupViewModel): ViewModel
+
 }

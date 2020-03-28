@@ -1,4 +1,4 @@
-package com.ihermit.app.ui.login
+package com.ihermit.app.ui.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,9 +27,9 @@ class LoginViewModel @Inject constructor(
 
     fun auth(email: String, password: String) {
         viewModelScope.launch {
-            // TODO(malvinstn): Validation email and password.
             if (email.isEmpty() || password.isEmpty()) {
-
+                // TODO(malvinstn): Validation email and password and error message.
+                return@launch
             }
             if (authRepository.auth(email, password)) {
                 // New user

@@ -3,7 +3,7 @@ package com.ihermit.app.di
 import android.content.Context
 import com.ihermit.app.HermitApplication
 import com.ihermit.app.data.DataModule
-import com.ihermit.app.ui.login.LoginModule
+import com.ihermit.app.ui.auth.AuthModule
 import com.ihermit.app.ui.main.MainModule
 import dagger.BindsInstance
 import dagger.Component
@@ -18,7 +18,7 @@ import javax.inject.Singleton
         ViewModelBuilderModule::class,
         DataModule::class,
         MainModule::class,
-        LoginModule::class
+        AuthModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<HermitApplication> {
