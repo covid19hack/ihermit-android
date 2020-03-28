@@ -20,7 +20,7 @@ object NetworkModule {
     fun providesHermitService(moshi: Moshi): HermitService {
         return Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .baseUrl("https://example.com/api/v1")
+            .baseUrl("https://example.com/api/v1/")
             .build()
             .create(HermitService::class.java)
     }

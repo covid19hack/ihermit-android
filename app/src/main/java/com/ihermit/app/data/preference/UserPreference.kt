@@ -9,5 +9,11 @@ import javax.inject.Singleton
 class UserPreference @Inject constructor(
     @Named("user_preferences") private val sharedPreferences: SharedPreferences
 ) {
-    val authToken: String? = sharedPreferences.getString("user_token", null)
+    var authToken: String?
+        get() = sharedPreferences.getString("authToken", null)
+        set(value) = sharedPreferences.edit().putString("authToken", value!!).apply()
+
+    var userId: Long?
+        get() = sharedPreferences.getLong("userId", 0).takeIf { it != 0L }
+        set(value) = sharedPreferences.edit().putLong("userId", value!!).apply()
 }
