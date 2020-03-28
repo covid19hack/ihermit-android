@@ -1,10 +1,10 @@
-package com.ihermit.app.ui.auth.login
+package com.ihermit.app.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ihermit.app.R
 
-class LoginActivity : AppCompatActivity() {
+class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

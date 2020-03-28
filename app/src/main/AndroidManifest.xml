@@ -20,7 +20,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.ihermit.app.ui.auth.login.LoginActivity"
+            android:name="com.ihermit.app.ui.auth.AuthActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
