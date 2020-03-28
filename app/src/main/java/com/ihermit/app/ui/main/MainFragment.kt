@@ -17,14 +17,6 @@ import permissions.dispatcher.ktx.withPermissionsCheck
 import javax.inject.Inject
 
 
-private val PERMISSIONS: Array<String> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-    arrayOf(
-        Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.ACCESS_BACKGROUND_LOCATION
-    )
-} else {
-    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
-}
 
 class MainFragment : DaggerFragment(R.layout.main_fragment) {
 
@@ -43,33 +35,5 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
     }
 
     private fun MainFragmentBinding.setup() {
-        location.setOnClickListener {
-            withPermissionsCheck(
-                *PERMISSIONS,
-                onShowRationale = ::showLocationRationale,
-                onPermissionDenied = ::retryLocationRequest,
-                onNeverAskAgain = ::showNeedsLocation
-            ) {
-                LocationServices.getFusedLocationProviderClient(requireActivity())
-                    .lastLocation
-                    .addOnSuccessListener { location: Location? ->
-                        Toast.makeText(requireActivity(), "Received location ", Toast.LENGTH_LONG)
-                            .show()
-                    }
-            }
-        }
     }
-
-    private fun showNeedsLocation() {
-        Toast.makeText(requireActivity(), "Needs location to work.", Toast.LENGTH_LONG).show()
-    }
-
-    private fun retryLocationRequest() {
-        Toast.makeText(requireActivity(), "Please don't deny.", Toast.LENGTH_LONG).show()
-    }
-
-    private fun showLocationRationale(permissionRequest: PermissionRequest) {
-        permissionRequest.proceed()
-    }
-
 }

@@ -38,7 +38,7 @@ class LoginFragment : DaggerFragment(R.layout.login_fragment) {
                         TODO("to main activity")
                     }
                     LoginViewModel.Event.Registered -> {
-                        findNavController().navigate(LoginFragmentDirections.toHomeSetupFragment())
+                        findNavController().navigate(LoginFragmentDirections.toLocationPermissionFragment())
                     }
                 }
             }

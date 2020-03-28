@@ -11,8 +11,18 @@
         android:label="login_fragment"
         tools:layout="@layout/login_fragment">
         <action
+            android:id="@+id/to_locationPermissionFragment"
+            app:destination="@id/locationPermissionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/locationPermissionFragment"
+        android:name="com.ihermit.app.ui.auth.permission.LocationPermissionFragment"
+        android:label="LocationPermissionFragment"
+        tools:layout="@layout/location_permission_fragment">
+        <action
             android:id="@+id/to_homeSetupFragment"
-            app:destination="@+id/homeSetupFragment" />
+            app:destination="@id/homeSetupFragment" />
     </fragment>
 
     <fragment
@@ -20,4 +30,5 @@
         android:name="com.ihermit.app.ui.auth.home.HomeSetupFragment"
         android:label="home_setup_fragment"
         tools:layout="@layout/home_setup_fragment" />
+
 </navigation>

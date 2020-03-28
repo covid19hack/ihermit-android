@@ -4,4 +4,7 @@
     <string name="password_hint">Password</string>
     <string name="auth_btn">Login/Sign Up</string>
     <string name="title_activity_maps">Map</string>
+    <string name="location_title">Location</string>
+    <string name="location_rationale">Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required.</string>
+    <string name="location_permission">Grant permission</string>
 </resources>
