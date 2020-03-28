@@ -1,5 +1,6 @@
 package com.ihermit.app.ui.auth.home
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -14,11 +15,12 @@ import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.ihermit.app.R
 import com.ihermit.app.databinding.HomeSetupFragmentBinding
+import com.ihermit.app.ui.main.MainActivity
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 // TODO(malvinstn): Make this adjustable.
-private const val HOME_RADIUS = 25.0
+private const val HOME_RADIUS = 100.0
 
 class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
 
@@ -45,7 +47,7 @@ class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
                 gMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
                 val accuracy = it.accuracy
                 // TODO(malvinstn): Zoom by accuracy
-                gMap.moveCamera(CameraUpdateFactory.zoomTo(18.0F))
+                gMap.moveCamera(CameraUpdateFactory.zoomTo(15.0F))
                 circle = gMap.addCircle(
                     CircleOptions()
                         .center(latLng)
@@ -64,7 +66,10 @@ class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
                 }
             })
             continueBtn.setOnClickListener {
-                // Geofencing
+                if (viewModel.saveHome()) {
+                    startActivity(Intent(requireActivity(), MainActivity::class.java))
+                    requireActivity().finish()
+                }
             }
         }
     }
