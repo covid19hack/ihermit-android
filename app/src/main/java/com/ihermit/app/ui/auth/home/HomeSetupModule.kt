@@ -1,4 +1,4 @@
-package com.ihermit.app.ui.auth.map
+package com.ihermit.app.ui.auth.home
 
 import androidx.lifecycle.ViewModel
 import com.ihermit.app.di.ViewModelBuilderModule

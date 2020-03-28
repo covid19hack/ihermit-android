@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/homeSetupFragment"
-        android:name="com.ihermit.app.ui.auth.map.HomeSetupFragment"
+        android:name="com.ihermit.app.ui.auth.home.HomeSetupFragment"
         android:label="home_setup_fragment"
         tools:layout="@layout/home_setup_fragment" />
 </navigation>
