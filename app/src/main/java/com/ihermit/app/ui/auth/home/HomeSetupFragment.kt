@@ -3,12 +3,13 @@ package com.ihermit.app.ui.auth.home
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.Circle
 import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.ihermit.app.R
@@ -36,27 +37,34 @@ class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
 
     private fun HomeSetupFragmentBinding.setup() {
         (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment).getMapAsync { gMap ->
+            var circle: Circle? = null
             fusedLocationServices.lastLocation?.addOnSuccessListener {
+                // TODO(malvinstn): Use current locations and location update listener.
                 val latLng = LatLng(it.latitude, it.longitude)
                 gMap.isMyLocationEnabled = true
                 gMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
                 val accuracy = it.accuracy
                 // TODO(malvinstn): Zoom by accuracy
                 gMap.moveCamera(CameraUpdateFactory.zoomTo(18.0F))
-                val circle = gMap.addCircle(
+                circle = gMap.addCircle(
                     CircleOptions()
                         .center(latLng)
                         .radius(HOME_RADIUS)
                         .strokeColor(Color.RED)
                 )
                 gMap.setOnCameraMoveListener {
-                    circle.center = gMap.cameraPosition.target
+                    viewModel.updateCenter(gMap.cameraPosition.target)
                 }
-                continueBtn.setOnClickListener {
-                    // Geofencing
-                    Toast.makeText(requireActivity(), "Set: ${circle.center}", Toast.LENGTH_LONG)
-                        .show()
+                viewModel.updateLocation(it)
+            }
+
+            viewModel.center.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    circle?.center = it
                 }
+            })
+            continueBtn.setOnClickListener {
+                // Geofencing
             }
         }
     }
