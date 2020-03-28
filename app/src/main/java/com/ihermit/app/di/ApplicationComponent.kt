@@ -2,6 +2,7 @@ package com.ihermit.app.di
 
 import android.content.Context
 import com.ihermit.app.HermitApplication
+import com.ihermit.app.ui.login.LoginModule
 import com.ihermit.app.ui.main.MainModule
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +15,8 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         ViewModelBuilderModule::class,
-        MainModule::class
+        MainModule::class,
+        LoginModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<HermitApplication> {
