@@ -7,10 +7,12 @@ import com.ihermit.app.di.DaggerApplicationComponent
 import com.ihermit.app.worker.LocationWorker
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class HermitApplication : DaggerApplication() {
 
     @Inject
