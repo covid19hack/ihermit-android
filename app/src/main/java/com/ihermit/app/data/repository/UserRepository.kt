@@ -26,7 +26,7 @@ class UserRepository @Inject constructor(
     suspend fun fetchUser() = withContext(Dispatchers.IO) {
         val userId = userPreference.userId
         if (userId != null) {
-            val user = hermitService.getUser(userId)
+            val user = hermitService.getUser()
             userDao.insert(user)
             achievementDao.insertAll(user.achievements)
         }
@@ -35,7 +35,7 @@ class UserRepository @Inject constructor(
     suspend fun updateNickName(nickName: String) = withContext(Dispatchers.IO) {
         val userId = userPreference.userId
         if (userId != null) {
-            hermitService.updateNickName(userId, UpdateUserRequestBody(nickName))
+            hermitService.updateNickName(UpdateUserRequestBody(nickName))
             userDao.updateNickName(userId, nickName)
         }
     }
