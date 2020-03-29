@@ -30,5 +30,16 @@
         android:name="com.ihermit.app.ui.auth.home.HomeSetupFragment"
         android:label="home_setup_fragment"
         tools:layout="@layout/home_setup_fragment" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.ihermit.app.ui.main.MainActivity"
+        android:label="main_activity"
+        tools:layout="@layout/main_activity" />
+    <action
+        android:id="@+id/to_mainActivity"
+        app:destination="@id/mainActivity"
+        app:launchSingleTop="true"
+        app:popUpTo="@navigation/login_nav"
+        app:popUpToInclusive="true" />
 
 </navigation>

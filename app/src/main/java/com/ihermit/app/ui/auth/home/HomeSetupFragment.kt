@@ -1,21 +1,21 @@
 package com.ihermit.app.ui.auth.home
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.Circle
 import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
+import com.ihermit.app.LoginNavDirections
 import com.ihermit.app.R
 import com.ihermit.app.databinding.HomeSetupFragmentBinding
-import com.ihermit.app.ui.main.MainActivity
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -67,7 +67,7 @@ class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
             })
             continueBtn.setOnClickListener {
                 if (viewModel.saveHome()) {
-                    startActivity(Intent(requireActivity(), MainActivity::class.java))
+                    findNavController().navigate(LoginNavDirections.toMainActivity())
                     requireActivity().finish()
                 }
             }

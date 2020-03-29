@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.ihermit.app.LoginNavDirections
 import com.ihermit.app.R
 import com.ihermit.app.databinding.LoginFragmentBinding
 import dagger.android.support.DaggerFragment
@@ -35,7 +36,8 @@ class LoginFragment : DaggerFragment(R.layout.login_fragment) {
             viewModel.events.collect {
                 when (it) {
                     LoginViewModel.Event.LoggedIn -> {
-                        TODO("to main activity")
+                        findNavController().navigate(LoginNavDirections.toMainActivity())
+                        requireActivity().finish()
                     }
                     LoginViewModel.Event.Registered -> {
                         findNavController().navigate(LoginFragmentDirections.toLocationPermissionFragment())
