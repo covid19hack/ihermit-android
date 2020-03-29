@@ -15,4 +15,7 @@
     <color name="colorOnSurface">#FFFFFF</color>
     <color name="colorBackground">#190E4F</color>
     <color name="scrimBackground">#52000000</color>
+
+    <color name="homeRadiusStroke">@color/colorPrimary</color>
+    <color name="homeRadiusFill">#23EA638C</color>
 </resources>

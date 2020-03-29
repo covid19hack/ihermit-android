@@ -1,6 +1,5 @@
 package com.ihermit.app.ui.auth.home
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -38,6 +37,10 @@ class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
     }
 
     private fun HomeSetupFragmentBinding.setup() {
+        val radiusStroke = resources.getColor(R.color.homeRadiusStroke, root.context.theme)
+        val radiusFill = resources.getColor(R.color.homeRadiusFill, root.context.theme)
+        val radiusStrokeWidth = resources.getDimensionPixelSize(R.dimen.homeStrokeWidth).toFloat()
+        val mapBottomPadding = resources.getDimensionPixelOffset(R.dimen.mapBottomPadding)
         (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment).getMapAsync { gMap ->
             var circle: Circle? = null
             fusedLocationServices.lastLocation?.addOnSuccessListener {
@@ -45,14 +48,20 @@ class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
                 val latLng = LatLng(it.latitude, it.longitude)
                 gMap.isMyLocationEnabled = true
                 gMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-                val accuracy = it.accuracy
                 // TODO(malvinstn): Zoom by accuracy
+//              // TODO(malvinstn): Extract setup method
+                val accuracy = it.accuracy
                 gMap.moveCamera(CameraUpdateFactory.zoomTo(15.0F))
+                gMap.uiSettings.isZoomGesturesEnabled = true
+                gMap.uiSettings.isZoomControlsEnabled = true
+                gMap.setPadding(0, 0, 0, mapBottomPadding)
                 circle = gMap.addCircle(
                     CircleOptions()
                         .center(latLng)
                         .radius(HOME_RADIUS)
-                        .strokeColor(Color.RED)
+                        .strokeColor(radiusStroke)
+                        .strokeWidth(radiusStrokeWidth)
+                        .fillColor(radiusFill)
                 )
                 gMap.setOnCameraMoveListener {
                     viewModel.updateCenter(gMap.cameraPosition.target)
