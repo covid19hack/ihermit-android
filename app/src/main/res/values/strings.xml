@@ -8,4 +8,8 @@
     <string name="location_rationale">Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required.</string>
     <string name="location_permission">Grant permission</string>
     <string name="home_set">Continue</string>
+    <string name="current_streak">Your current streak</string>
+    <string name="current_streak_home">of staying at home</string>
+    <string name="tab_achievements">Achievements</string>
+    <string name="tab_leaderboard">Leaderboard</string>
 </resources>

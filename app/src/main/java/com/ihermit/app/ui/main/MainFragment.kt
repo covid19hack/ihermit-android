@@ -1,28 +1,18 @@
 package com.ihermit.app.ui.main
 
-import android.Manifest
-import android.location.Location
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.location.LocationServices
+import com.google.android.material.tabs.TabLayoutMediator
 import com.ihermit.app.R
 import com.ihermit.app.databinding.MainFragmentBinding
 import dagger.android.support.DaggerFragment
-import permissions.dispatcher.PermissionRequest
-import permissions.dispatcher.ktx.withPermissionsCheck
 import javax.inject.Inject
 
 
-
 class MainFragment : DaggerFragment(R.layout.main_fragment) {
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -35,5 +25,17 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
     }
 
     private fun MainFragmentBinding.setup() {
+        pager.adapter = MainFragmentAdapter(this@MainFragment)
+        TabLayoutMediator(tabLayout, pager) { tab, position ->
+            tab.text = when (position) {
+                0 -> getString(R.string.tab_achievements)
+                1 -> getString(R.string.tab_leaderboard)
+                else -> throw IllegalStateException("Unhandled position.")
+            }
+        }.attach()
+        appbarLayout.setOnApplyWindowInsetsListener { v, insets ->
+            v.updatePadding(top = insets.systemWindowInsetTop)
+            insets.consumeSystemWindowInsets()
+        }
     }
 }
