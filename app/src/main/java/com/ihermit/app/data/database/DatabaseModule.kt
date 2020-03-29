@@ -19,7 +19,9 @@ object DatabaseModule {
     }
 
     @Provides
-    fun providesAchievementDao(hermitDatabase: HermitDatabase): AchievementDao {
-        return hermitDatabase.achievementDao()
-    }
+    fun providesUserDao(hermitDatabase: HermitDatabase): UserDao = hermitDatabase.userDao()
+
+    @Provides
+    fun providesAchievementDao(hermitDatabase: HermitDatabase): AchievementDao =
+        hermitDatabase.achievementDao()
 }

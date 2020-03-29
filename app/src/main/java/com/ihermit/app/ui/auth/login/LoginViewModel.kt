@@ -1,8 +1,11 @@
 package com.ihermit.app.ui.auth.login
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ihermit.app.data.repository.AuthRepository
+import com.ihermit.app.data.repository.UserRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BroadcastChannel
@@ -14,8 +17,12 @@ import javax.inject.Inject
 @FlowPreview
 @ExperimentalCoroutinesApi
 class LoginViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
+
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean> = _isLoading
 
     sealed class Event {
         object LoggedIn : Event()
@@ -31,11 +38,13 @@ class LoginViewModel @Inject constructor(
                 // TODO(malvinstn): Validation email and password and error message.
                 return@launch
             }
-            if (authRepository.auth(email, password)) {
-                // New user
+            _isLoading.value = true
+            val newUser = authRepository.auth(email, password)
+            userRepository.fetchUser()
+            _isLoading.value = false
+            if (newUser) {
                 eventChannel.offer(Event.Registered)
             } else {
-                // Existing user
                 eventChannel.offer(Event.LoggedIn)
             }
         }

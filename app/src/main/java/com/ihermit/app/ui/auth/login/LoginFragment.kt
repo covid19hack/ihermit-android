@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -32,6 +33,16 @@ class LoginFragment : DaggerFragment(R.layout.login_fragment) {
     }
 
     private fun LoginFragmentBinding.setup() {
+        viewModel.isLoading.observe(
+            viewLifecycleOwner,
+            Observer { isLoading ->
+                email.isEnabled = !isLoading
+                password.isEnabled = !isLoading
+                authBtn.isEnabled = !isLoading
+                if (isLoading) progress.show() else progress.hide()
+            }
+        )
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.events.collect {
                 when (it) {
