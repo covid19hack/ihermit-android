@@ -18,6 +18,9 @@ data class UserProfile(
     val numOfReasonableBreaches: Int
 )
 
+val UserProfile.streakDays
+    get() = streakLengthHours / 24 + 1
+
 @JsonClass(generateAdapter = true)
 data class User(
     val id: Long,

@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ihermit.app.R
+import com.ihermit.app.data.entity.streakDays
 import com.ihermit.app.databinding.MainFragmentBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -37,5 +39,17 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
             v.updatePadding(top = insets.systemWindowInsetTop)
             insets.consumeSystemWindowInsets()
         }
+
+        viewModel.user.observe(
+            viewLifecycleOwner,
+            Observer { userProfile ->
+                streakDays.text = resources.getQuantityString(
+                    R.plurals.streak_days,
+                    userProfile.streakDays,
+                    userProfile.streakDays
+                )
+            }
+        )
+
     }
 }

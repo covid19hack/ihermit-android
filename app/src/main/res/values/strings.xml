@@ -16,4 +16,8 @@
     <string name="nick_name_hint">Display Name</string>
     <string name="setup_nick_name_button">Continue</string>
     <string name="progress_text_format">%1$d/%2$d</string>
+    <plurals name="streak_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
 </resources>
