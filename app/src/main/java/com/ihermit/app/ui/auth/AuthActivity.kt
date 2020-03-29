@@ -1,13 +1,15 @@
 package com.ihermit.app.ui.auth
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.ihermit.app.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.updatePadding
+import com.ihermit.app.databinding.AuthActivityBinding
 
 class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_activity)
+        val binding = AuthActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
