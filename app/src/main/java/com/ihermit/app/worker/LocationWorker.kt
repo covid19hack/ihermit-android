@@ -46,7 +46,7 @@ class LocationWorker(context: Context, parameters: WorkerParameters) :
 
     override suspend fun doWork(): Result {
         Timber.d("doWork in LocationWorker")
-        setForeground(createForeground())
+        setForeground(createForeground(applicationContext))
         val home = userPreference.home
         val token = userPreference.authToken
         if (home != null && token != null) {
@@ -69,12 +69,13 @@ class LocationWorker(context: Context, parameters: WorkerParameters) :
         return Result.success()
     }
 
-    private fun createForeground(): ForegroundInfo {
+    private fun createForeground(context: Context): ForegroundInfo {
         createChannelIfNecessary(applicationContext)
+        val title = context.getString(R.string.tracker_title)
         val notification = NotificationCompat.Builder(applicationContext, "location-watcher")
-            .setContentTitle("Home")
-            .setTicker("Home")
-            .setContentText("Looking at your house")
+            .setContentTitle(title)
+            .setTicker(title)
+            .setContentText(context.getString(R.string.tracker_in_progress_description))
             .setSmallIcon(R.drawable.ic_my_location_black_24dp)
             .setOngoing(true)
 //            .addAction(android.R.drawable.ic_delete, cancel, intent)

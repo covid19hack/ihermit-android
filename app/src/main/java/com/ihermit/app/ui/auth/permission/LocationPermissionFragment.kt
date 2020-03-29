@@ -42,11 +42,11 @@ class LocationPermissionFragment : DaggerFragment(R.layout.location_permission_f
     }
 
     private fun showNeedsLocation() {
-        Toast.makeText(requireActivity(), "Needs location to work.", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireActivity(), getString(R.string.please_accept_permission), Toast.LENGTH_LONG).show()
     }
 
     private fun retryLocationRequest() {
-        Toast.makeText(requireActivity(), "Please don't deny.", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireActivity(), getString(R.string.please_accept_permission), Toast.LENGTH_LONG).show()
     }
 
     private fun showLocationRationale(permissionRequest: PermissionRequest) {
