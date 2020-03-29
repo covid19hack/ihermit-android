@@ -17,6 +17,6 @@ interface HermitService {
     @PATCH("users/updateNickName")
     suspend fun updateNickName(@Body request: UpdateUserRequestBody)
 
-    @POST("users/checkIn")
+    @POST("users/createCheckIn")
     suspend fun checkIn(@Body request: CheckInRequest): User
 }
