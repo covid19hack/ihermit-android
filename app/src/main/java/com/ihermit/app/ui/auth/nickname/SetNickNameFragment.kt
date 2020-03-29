@@ -11,14 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.ihermit.app.R
 import com.ihermit.app.databinding.SetNickNameFragmentBinding
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
-@FlowPreview
 class SetNickNameFragment : DaggerFragment(R.layout.set_nick_name_fragment) {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

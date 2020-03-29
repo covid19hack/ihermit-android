@@ -3,6 +3,7 @@ package com.ihermit.app.ui.main.achievement
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ihermit.app.R
 import com.ihermit.app.databinding.AchievementFragmentBinding
@@ -22,6 +23,18 @@ class AchievementFragment : DaggerFragment(R.layout.achievement_fragment) {
     }
 
     private fun AchievementFragmentBinding.setup() {
-
+        viewModel.achievements.observe(
+            viewLifecycleOwner,
+            Observer { list ->
+                achievements.withModels {
+                    list.forEach { achievement ->
+                        achievement {
+                            id(achievement.achievementId)
+                            achievement(achievement)
+                        }
+                    }
+                }
+            }
+        )
     }
 }
