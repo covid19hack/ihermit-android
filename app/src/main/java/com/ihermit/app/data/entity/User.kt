@@ -8,11 +8,11 @@ import java.util.*
 
 @Entity
 data class UserProfile(
-    @PrimaryKey val id: Long,
+    @PrimaryKey val _id: Long,
     val nickName: String,
     val levelNumber: Int,
     val levelName: String,
-    val expPoints: Int,
+    val points: Int,
     val streakStartDate: Date,
     val streakLengthHours: Int,
     val numOfReasonableBreaches: Int
@@ -23,11 +23,11 @@ val UserProfile.streakDays
 
 @JsonClass(generateAdapter = true)
 data class User(
-    val id: Long,
+    val _id: Long,
     val nickName: String,
     val levelNumber: Int,
     val levelName: String,
-    val expPoints: Int,
+    val points: Int,
     val streakStartDate: Date,
     val streakLengthHours: Int,
     val numOfReasonableBreaches: Int,

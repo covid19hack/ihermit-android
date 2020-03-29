@@ -20,17 +20,17 @@ abstract class AchievementModel : EpoxyModelWithHolder<AchievementHolder>() {
     override fun bind(holder: AchievementHolder) {
         super.bind(holder)
         holder.binding.root.setOnClickListener(clickListener)
-        holder.binding.name.text = achievement.achievementName
-        holder.binding.description.text = achievement.achievementDescription
-        val isProgressVisible = achievement.achievementGoal > 1
+        holder.binding.name.text = achievement.title
+        holder.binding.description.text = achievement.description
+        val isProgressVisible = achievement.goal > 1
         holder.binding.progress.isVisible = isProgressVisible
         holder.binding.progressText.isVisible = isProgressVisible
-        holder.binding.progress.progress = achievement.achievementProgress
-        holder.binding.progress.max = achievement.achievementGoal
+        holder.binding.progress.progress = achievement.progress
+        holder.binding.progress.max = achievement.goal
         holder.binding.progressText.text = holder.binding.root.context.getString(
             R.string.progress_text_format,
-            achievement.achievementProgress,
-            achievement.achievementGoal
+            achievement.progress,
+            achievement.goal
         )
     }
 }

@@ -11,7 +11,7 @@ interface UserDao {
         """
             SELECT *
             FROM UserProfile
-            WHERE id = :id
+            WHERE _id = :id
         """
     )
     fun getUser(id: Long): Flow<UserProfile>
@@ -20,7 +20,7 @@ interface UserDao {
         """
             UPDATE UserProfile
             SET nickName = :nickName
-            WHERE id = :id
+            WHERE _id = :id
         """
     )
     suspend fun updateNickName(id: Long, nickName: String)

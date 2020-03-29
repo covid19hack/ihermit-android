@@ -33,7 +33,7 @@ class UserRepository @Inject constructor(
     suspend fun updateNickName(nickName: String) = withContext(Dispatchers.IO) {
         val userId = userPreference.userId
         if (userId != null) {
-            hermitService.updateUser(userId, UpdateUserRequestBody(nickName))
+            hermitService.updateNickName(userId, UpdateUserRequestBody(nickName))
             userDao.updateNickName(userId, nickName)
         }
     }

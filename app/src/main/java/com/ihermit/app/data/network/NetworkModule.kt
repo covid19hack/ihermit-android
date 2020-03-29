@@ -5,6 +5,7 @@ import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.*
@@ -24,7 +25,14 @@ object NetworkModule {
     @Singleton
     fun providesHermitService(moshi: Moshi, headerInterceptor: HeaderInterceptor): HermitService {
         val client = OkHttpClient.Builder()
-            .apply { networkInterceptors().add(headerInterceptor) }
+            .apply {
+                networkInterceptors().apply {
+                    add(headerInterceptor)
+                    add(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                }
+            }
             .build()
         return Retrofit.Builder()
             .client(client)
