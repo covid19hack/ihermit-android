@@ -1,6 +1,7 @@
 package com.ihermit.app.ui.main.achievement
 
 import android.view.View
+import androidx.core.view.isVisible
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
@@ -16,7 +17,18 @@ abstract class AchievementModel : EpoxyModelWithHolder<AchievementHolder>() {
 
     override fun bind(holder: AchievementHolder) {
         super.bind(holder)
-        holder.binding.title.text = achievement.achievementName
+        holder.binding.name.text = achievement.achievementName
+        holder.binding.description.text = achievement.achievementDescription
+        val isProgressVisible = achievement.achievementGoal > 1
+        holder.binding.progress.isVisible = isProgressVisible
+        holder.binding.progressText.isVisible = isProgressVisible
+        holder.binding.progress.progress = achievement.achievementProgress
+        holder.binding.progress.max = achievement.achievementGoal
+        holder.binding.progressText.text = holder.binding.root.context.getString(
+            R.string.progress_text_format,
+            achievement.achievementProgress,
+            achievement.achievementGoal
+        )
     }
 }
 
