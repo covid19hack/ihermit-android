@@ -7,12 +7,12 @@
     <color name="colorError">#B00020</color>
     <color name="colorPrimaryVariant">#3700B3</color>
     <color name="colorSecondaryVariant">#018786</color>
-    <color name="colorSurface">#F1F1F1</color>
+    <color name="colorSurface">#2A1D6D</color>
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="colorOnSecondary">#000000</color>
     <color name="colorOnBackground">#FFFFFF</color>
     <color name="colorOnError">#FFFFFF</color>
-    <color name="colorOnSurface">#000000</color>
+    <color name="colorOnSurface">#FFFFFF</color>
     <color name="colorBackground">#190E4F</color>
     <color name="scrimBackground">#52000000</color>
 </resources>
