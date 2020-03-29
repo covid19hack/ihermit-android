@@ -1,5 +1,6 @@
 package com.ihermit.app.data.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -13,7 +14,8 @@ data class UserProfile(
     val levelNumber: Int,
     val levelName: String,
     val points: Int,
-    val streakStartDate: Date,
+    @ColumnInfo(defaultValue = "NULL")
+    val streakStartDate: Date?,
     val streakLength: Int,
     val numOfReasonableBreaches: Int
 )
@@ -28,7 +30,7 @@ data class User(
     val levelNumber: Int = 1,
     val levelName: String = "Newbie",
     val points: Int,
-    val streakStartDate: Date = Date(),
+    val streakStartDate: Date? = Date(),
     val streakLength: Int,
     val numOfReasonableBreaches: Int = 0,
     @Ignore
