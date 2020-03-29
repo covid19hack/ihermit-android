@@ -14,12 +14,10 @@ import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.ihermit.app.LoginNavDirections
 import com.ihermit.app.R
+import com.ihermit.app.data.Constants
 import com.ihermit.app.databinding.HomeSetupFragmentBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
-
-// TODO(malvinstn): Make this adjustable.
-private const val HOME_RADIUS = 100.0
 
 class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
 
@@ -58,7 +56,7 @@ class HomeSetupFragment : DaggerFragment(R.layout.home_setup_fragment) {
                 circle = gMap.addCircle(
                     CircleOptions()
                         .center(latLng)
-                        .radius(HOME_RADIUS)
+                        .radius(Constants.HOME_RADIUS_IN_METER)
                         .strokeColor(radiusStroke)
                         .strokeWidth(radiusStrokeWidth)
                         .fillColor(radiusFill)

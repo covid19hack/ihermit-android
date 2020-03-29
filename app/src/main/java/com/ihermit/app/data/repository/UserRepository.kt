@@ -5,6 +5,7 @@ import com.ihermit.app.data.database.UserDao
 import com.ihermit.app.data.entity.Achievement
 import com.ihermit.app.data.entity.UserProfile
 import com.ihermit.app.data.network.HermitService
+import com.ihermit.app.data.network.request.CheckInRequest
 import com.ihermit.app.data.network.request.UpdateUserRequestBody
 import com.ihermit.app.data.preference.UserPreference
 import kotlinx.coroutines.Dispatchers
@@ -58,5 +59,10 @@ class UserRepository @Inject constructor(
 
     suspend fun getAchievement(id: Long): Achievement {
         return achievementDao.getAchievement(id)
+    }
+
+    suspend fun checkIn(isAtHome: Boolean) {
+        val user = hermitService.checkIn(CheckInRequest(isAtHome))
+        userDao.update(user)
     }
 }

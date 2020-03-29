@@ -27,4 +27,7 @@ interface UserDao {
 
     @Insert(entity = UserProfile::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User)
+
+    @Update(entity = UserProfile::class, onConflict = OnConflictStrategy.REPLACE)
+    suspend fun update(user: User)
 }

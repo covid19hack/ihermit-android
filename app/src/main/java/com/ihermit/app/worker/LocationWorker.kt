@@ -13,10 +13,11 @@ import androidx.work.ForegroundInfo
 import androidx.work.WorkerParameters
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.ihermit.app.R
+import com.ihermit.app.data.Constants
 import com.ihermit.app.data.preference.UserPreference
+import com.ihermit.app.data.repository.UserRepository
 import dagger.android.HasAndroidInjector
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.suspendCancellableCoroutine
 import timber.log.Timber
 import javax.inject.Inject
@@ -36,6 +37,9 @@ class LocationWorker(context: Context, parameters: WorkerParameters) :
     @Inject
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
+    @Inject
+    lateinit var userRepository: UserRepository
+
     init {
         (context.applicationContext as HasAndroidInjector).androidInjector().inject(this)
     }
@@ -43,7 +47,9 @@ class LocationWorker(context: Context, parameters: WorkerParameters) :
     override suspend fun doWork(): Result {
         Timber.d("doWork in LocationWorker")
         setForeground(createForeground())
-        userPreference.home?.let { home ->
+        val home = userPreference.home
+        val token = userPreference.authToken
+        if (home != null && token != null) {
             val homeLocation = Location("").apply {
                 latitude = home.latitude
                 longitude = home.longitude
@@ -52,8 +58,10 @@ class LocationWorker(context: Context, parameters: WorkerParameters) :
             try {
                 val lastLocation = fusedLocationProviderClient.lastLocation()
                 Timber.d("Last location is ${lastLocation.latitude}, ${lastLocation.longitude}")
-                Timber.d("Distance: ${lastLocation.distanceTo(homeLocation)}")
-                delay(5000)
+                val distance = lastLocation.distanceTo(homeLocation)
+                Timber.d("Distance: $distance")
+                val isAtHome = distance <= Constants.HOME_RADIUS_IN_METER
+                userRepository.checkIn(isAtHome)
             } catch (e: Exception) {
                 return Result.failure()
             }
