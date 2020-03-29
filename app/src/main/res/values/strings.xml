@@ -2,7 +2,7 @@
     <string name="app_name">iHermit</string>
     <string name="email_address_hint">Email address</string>
     <string name="password_hint">Password</string>
-    <string name="auth_btn">Login/Sign Up</string>
+    <string name="auth_btn">Continue</string>
     <string name="title_activity_maps">Map</string>
     <string name="location_title">Location</string>
     <string name="location_rationale">Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required. Explain why location required.</string>
@@ -12,4 +12,7 @@
     <string name="current_streak_home">of staying at home</string>
     <string name="tab_achievements">Achievements</string>
     <string name="tab_leaderboard">Leaderboard</string>
+    <string name="setup_nick_name_hint">Set up your display name</string>
+    <string name="nick_name_hint">Display Name</string>
+    <string name="setup_nick_name_button">Continue</string>
 </resources>

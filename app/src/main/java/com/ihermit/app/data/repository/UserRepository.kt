@@ -5,6 +5,7 @@ import com.ihermit.app.data.database.UserDao
 import com.ihermit.app.data.entity.Achievement
 import com.ihermit.app.data.entity.UserProfile
 import com.ihermit.app.data.network.HermitService
+import com.ihermit.app.data.network.request.UpdateUserRequestBody
 import com.ihermit.app.data.preference.UserPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -26,6 +27,14 @@ class UserRepository @Inject constructor(
             val user = hermitService.getUser(userId)
             userDao.insert(user)
             achievementDao.insertAll(user.achievements)
+        }
+    }
+
+    suspend fun updateNickName(nickName: String) = withContext(Dispatchers.IO) {
+        val userId = userPreference.userId
+        if (userId != null) {
+            hermitService.updateUser(userId, UpdateUserRequestBody(nickName))
+            userDao.updateNickName(userId, nickName)
         }
     }
 

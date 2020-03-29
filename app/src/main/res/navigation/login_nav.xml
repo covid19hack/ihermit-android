@@ -12,7 +12,12 @@
         tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/to_locationPermissionFragment"
-            app:destination="@id/locationPermissionFragment" />
+            app:destination="@id/locationPermissionFragment"
+            app:popUpTo="@+id/loginFragment" />
+        <action
+            android:id="@+id/to_setNickNameFragment"
+            app:destination="@id/setNickNameFragment"
+            app:popUpTo="@+id/loginFragment" />
     </fragment>
 
     <fragment
@@ -41,5 +46,15 @@
         app:launchSingleTop="true"
         app:popUpTo="@navigation/login_nav"
         app:popUpToInclusive="true" />
+
+    <fragment
+        android:id="@+id/setNickNameFragment"
+        android:name="com.ihermit.app.ui.auth.nickname.SetNickNameFragment"
+        android:label="SetNickNameFragment"
+        tools:layout="@layout/set_nick_name_fragment">
+        <action
+            android:id="@+id/to_locationPermissionFragment"
+            app:destination="@id/locationPermissionFragment" />
+    </fragment>
 
 </navigation>
