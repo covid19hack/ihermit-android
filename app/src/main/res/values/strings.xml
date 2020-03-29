@@ -22,4 +22,5 @@
         <item quantity="other">%1$d days</item>
     </plurals>
     <string name="user_progress">Level %1$d: %2$s</string>
+    <string name="not_valid_email">Not a valid email</string>
 </resources>

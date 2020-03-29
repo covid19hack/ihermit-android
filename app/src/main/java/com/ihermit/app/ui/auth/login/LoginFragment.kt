@@ -1,6 +1,7 @@
 package com.ihermit.app.ui.auth.login
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
@@ -53,6 +54,10 @@ class LoginFragment : DaggerFragment(R.layout.login_fragment) {
 
         fun auth() {
             val email = emailField.text.toString()
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailField.error = getString(R.string.not_valid_email)
+                return
+            }
             val password = passwordField.text.toString()
             viewModel.auth(email, password)
         }
