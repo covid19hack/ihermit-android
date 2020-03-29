@@ -29,7 +29,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .baseUrl("https://example.com/api/v1/")
+            .baseUrl("https://ihermit-node.herokuapp.com/api/v1/")
             .build()
             .create(HermitService::class.java)
     }
