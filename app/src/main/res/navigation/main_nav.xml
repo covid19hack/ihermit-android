@@ -18,7 +18,19 @@
     <action
         android:id="@+id/to_authActivity"
         app:destination="@id/authActivity"
+        app:launchSingleTop="true"
         app:popUpTo="@id/main_nav"
-        app:popUpToInclusive="true"
-        app:launchSingleTop="true" />
+        app:popUpToInclusive="true" />
+    <dialog
+        android:id="@+id/achievementDialogFragment"
+        android:name="com.ihermit.app.ui.main.achievement.dialog.AchievementDialogFragment"
+        android:label="AchievementDialogFragment"
+        tools:layout="@layout/achievement_dialog_fragment">
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </dialog>
+    <action
+        android:id="@+id/to_achievementDialogFragment"
+        app:destination="@id/achievementDialogFragment" />
 </navigation>

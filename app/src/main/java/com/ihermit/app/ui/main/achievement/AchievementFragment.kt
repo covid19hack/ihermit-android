@@ -5,6 +5,8 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.ihermit.app.MainNavDirections
 import com.ihermit.app.R
 import com.ihermit.app.databinding.AchievementFragmentBinding
 import dagger.android.support.DaggerFragment
@@ -32,7 +34,11 @@ class AchievementFragment : DaggerFragment(R.layout.achievement_fragment) {
                             id(achievement.achievementId)
                             achievement(achievement)
                             clickListener { model, _, _, _ ->
-                                
+                                findNavController().navigate(
+                                    MainNavDirections.toAchievementDialogFragment(
+                                        model.achievement().achievementId
+                                    )
+                                )
                             }
                         }
                     }
