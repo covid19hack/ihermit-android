@@ -7,7 +7,11 @@ import com.squareup.moshi.JsonClass
 @Entity
 @JsonClass(generateAdapter = true)
 data class Achievement(
-    @PrimaryKey val id: Long,
-    val name: String,
-    val description: String
+    @PrimaryKey val achievementId: Int,
+    val achievementNumber: Int,
+    val achievementName: String,
+    val achievementDescription: String,
+    val achievementCompleted: Boolean,
+    val achievementProgress: Int,
+    val achievementGoal: Int
 )
