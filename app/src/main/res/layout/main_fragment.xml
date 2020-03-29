@@ -32,7 +32,7 @@
                     style="?textAppearanceBody1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="56dp"
                     android:gravity="center"
                     android:text="@string/current_streak" />
 
@@ -49,7 +49,7 @@
                     style="?textAppearanceHeadline6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="56dp"
                     android:gravity="center"
                     android:text="@string/current_streak_home" />
             </LinearLayout>
