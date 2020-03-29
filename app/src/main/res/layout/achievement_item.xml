@@ -11,7 +11,7 @@
         android:id="@+id/badge"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:src="?attr/colorPrimary"
+        android:src="?attr/colorOnBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

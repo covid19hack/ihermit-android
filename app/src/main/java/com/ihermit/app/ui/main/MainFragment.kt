@@ -39,10 +39,12 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
             v.updatePadding(top = insets.systemWindowInsetTop)
             insets.consumeSystemWindowInsets()
         }
-
+        toolbar.inflateMenu(R.menu.main)
         viewModel.user.observe(
             viewLifecycleOwner,
             Observer { userProfile ->
+                nickName.text = userProfile.nickName
+                userProgress.text = userProfile.levelName
                 streakDays.text = resources.getQuantityString(
                     R.plurals.streak_days,
                     userProfile.streakDays,
