@@ -31,6 +31,9 @@ class AchievementFragment : DaggerFragment(R.layout.achievement_fragment) {
                         achievement {
                             id(achievement.achievementId)
                             achievement(achievement)
+                            clickListener { model, _, _, _ ->
+                                
+                            }
                         }
                     }
                 }

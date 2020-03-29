@@ -14,9 +14,12 @@ import com.ihermit.app.databinding.AchievementItemBinding
 abstract class AchievementModel : EpoxyModelWithHolder<AchievementHolder>() {
     @EpoxyAttribute
     lateinit var achievement: Achievement
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    var clickListener: View.OnClickListener? = null
 
     override fun bind(holder: AchievementHolder) {
         super.bind(holder)
+        holder.binding.root.setOnClickListener(clickListener)
         holder.binding.name.text = achievement.achievementName
         holder.binding.description.text = achievement.achievementDescription
         val isProgressVisible = achievement.achievementGoal > 1
