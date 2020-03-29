@@ -12,11 +12,11 @@ class UserPreference @Inject constructor(
 ) {
     var authToken: String?
         get() = sharedPreferences.getString("authToken", null)
-        set(value) = sharedPreferences.edit().putString("authToken", value!!).apply()
+        set(value) = sharedPreferences.edit().putString("authToken", value).apply()
 
     var userId: Long?
         get() = sharedPreferences.getLong("userId", 0).takeIf { it != 0L }
-        set(value) = sharedPreferences.edit().putLong("userId", value!!).apply()
+        set(value) = sharedPreferences.edit().putLong("userId", value ?: 0L).apply()
 
     var home: LatLng?
         get() = sharedPreferences.getString("home", "")?.split(";")?.let {

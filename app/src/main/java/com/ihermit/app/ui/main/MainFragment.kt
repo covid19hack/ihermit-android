@@ -6,11 +6,15 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ihermit.app.R
 import com.ihermit.app.data.entity.streakDays
 import com.ihermit.app.databinding.MainFragmentBinding
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -40,6 +44,29 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
             insets.consumeSystemWindowInsets()
         }
         toolbar.inflateMenu(R.menu.main)
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> throw IllegalStateException("Unhandled")
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope
+            .launch {
+                viewModel.events
+                    .collect { event ->
+                        when (event) {
+                            MainViewModel.Event.LoggedOut -> {
+                                findNavController().navigate(MainFragmentDirections.toAuthActivity())
+                                requireActivity().finish()
+                            }
+                        }
+                    }
+            }
+
         viewModel.user.observe(
             viewLifecycleOwner,
             Observer { userProfile ->

@@ -10,4 +10,15 @@
         android:name="com.ihermit.app.ui.main.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" />
+    <activity
+        android:id="@+id/authActivity"
+        android:name="com.ihermit.app.ui.auth.AuthActivity"
+        android:label="auth_activity"
+        tools:layout="@layout/auth_activity" />
+    <action
+        android:id="@+id/to_authActivity"
+        app:destination="@id/authActivity"
+        app:popUpTo="@id/main_nav"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true" />
 </navigation>
