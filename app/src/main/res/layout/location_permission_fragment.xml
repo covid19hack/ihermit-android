@@ -6,31 +6,30 @@
 
     <TextView
         android:id="@+id/location_title"
-        style="?textAppearanceHeadline4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="56dp"
         android:text="@string/location_title"
+        android:textAppearance="?textAppearanceHeadline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/location_rationale"
-        style="?textAppearanceBody2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/location_rationale"
+        android:textAppearance="?textAppearanceBody2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location_title" />
 
     <Button
         android:id="@+id/grant_permission"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"

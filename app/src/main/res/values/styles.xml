@@ -38,6 +38,14 @@
         <item name="textAppearanceSubtitle1">@style/TextAppearance.AppTheme.Subtitle1</item>
         <item name="textAppearanceSubtitle2">@style/TextAppearance.AppTheme.Subtitle2</item>
 
+        <item name="materialButtonStyle">@style/Widget.AppTheme.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.AppTheme.Button.Outlined</item>
+        <item name="borderlessButtonStyle">@style/Widget.AppTheme.Button.Borderless</item>
+
+        <item name="textInputStyle">
+            @style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense
+        </item>
+
     </style>
 
     <style name="TextAppearance.AppTheme.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
@@ -81,8 +89,8 @@
     </style>
 
     <style name="TextAppearance.AppTheme.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="fontFamily">@font/palanquin_medium</item>
-        <item name="android:fontFamily">@font/palanquin_medium</item>
+        <item name="fontFamily">@font/palanquin_bold</item>
+        <item name="android:fontFamily">@font/palanquin_bold</item>
     </style>
 
     <style name="TextAppearance.AppTheme.Caption" parent="TextAppearance.MaterialComponents.Caption">
@@ -103,6 +111,29 @@
     <style name="TextAppearance.AppTheme.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="fontFamily">@font/palanquin_medium</item>
         <item name="android:fontFamily">@font/palanquin_medium</item>
+    </style>
+
+    <style name="Widget.AppTheme.Button" parent="Widget.MaterialComponents.Button">
+        <item name="textAllCaps">false</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="Widget.AppTheme.Button.Borderless" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="textAllCaps">false</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="Widget.AppTheme.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="textAllCaps">false</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">100dp</item>
     </style>
 
 </resources>

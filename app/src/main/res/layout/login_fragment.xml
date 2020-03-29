@@ -9,7 +9,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -31,7 +30,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -54,7 +52,7 @@
 
     <Button
         android:id="@+id/authBtn"
-        style="@style/Widget.MaterialComponents.Button"
+        style="?attr/materialButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
