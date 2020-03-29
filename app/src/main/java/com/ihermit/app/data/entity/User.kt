@@ -30,7 +30,7 @@ data class User(
     val levelNumber: Int = 1,
     val levelName: String = "Newbie",
     val points: Int,
-    val streakStartDate: Date? = Date(),
+    val streakStartDate: Date?,
     val streakLength: Int,
     val numOfReasonableBreaches: Int = 0,
     @Ignore
