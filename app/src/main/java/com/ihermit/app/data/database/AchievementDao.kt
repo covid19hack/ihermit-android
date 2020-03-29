@@ -17,6 +17,15 @@ interface AchievementDao {
     )
     fun getAllAchievements(): Flow<List<Achievement>>
 
+    @Query(
+        """
+            SELECT *
+            FROM Achievement
+            WHERE id = :id
+        """
+    )
+    suspend fun getAchievement(id: Long): Achievement
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(achievements: List<Achievement>)
 }

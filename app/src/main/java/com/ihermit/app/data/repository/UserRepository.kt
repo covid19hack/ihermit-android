@@ -3,6 +3,7 @@ package com.ihermit.app.data.repository
 import com.ihermit.app.data.database.AchievementDao
 import com.ihermit.app.data.database.UserDao
 import com.ihermit.app.data.entity.Achievement
+import com.ihermit.app.data.entity.User
 import com.ihermit.app.data.entity.UserProfile
 import com.ihermit.app.data.network.HermitService
 import com.ihermit.app.data.network.request.UpdateUserRequestBody
@@ -11,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.withContext
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -54,5 +56,9 @@ class UserRepository @Inject constructor(
         } else {
             emptyFlow()
         }
+    }
+
+    suspend fun getAchievement(id: Long): Achievement {
+        return achievementDao.getAchievement(id)
     }
 }

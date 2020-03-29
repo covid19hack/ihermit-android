@@ -22,8 +22,8 @@ class MainViewModel @Inject constructor(
         object LoggedOut : Event()
     }
 
-    private val _user = MutableLiveData<UserProfile>()
-    val user: LiveData<UserProfile> = _user
+    private val _user = MutableLiveData<UserProfile?>()
+    val user: LiveData<UserProfile?> = _user
 
     private val eventChannel = BroadcastChannel<Event>(Channel.CONFLATED)
     val events = eventChannel.asFlow()
@@ -34,6 +34,9 @@ class MainViewModel @Inject constructor(
                 .collect { userProfile ->
                     _user.value = userProfile
                 }
+        }
+        viewModelScope.launch {
+            userRepository.fetchUser()
         }
     }
 

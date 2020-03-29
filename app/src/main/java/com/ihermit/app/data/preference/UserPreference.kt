@@ -14,9 +14,9 @@ class UserPreference @Inject constructor(
         get() = sharedPreferences.getString("authToken", null)
         set(value) = sharedPreferences.edit().putString("authToken", value).apply()
 
-    var userId: Long?
-        get() = sharedPreferences.getLong("userId", 0).takeIf { it != 0L }
-        set(value) = sharedPreferences.edit().putLong("userId", value ?: 0L).apply()
+    var userId: String?
+        get() = sharedPreferences.getString("userId", null)
+        set(value) = sharedPreferences.edit().putString("userId", value).apply()
 
     var home: LatLng?
         get() = sharedPreferences.getString("home", "")?.split(";")?.let {

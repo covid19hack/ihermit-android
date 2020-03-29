@@ -36,7 +36,6 @@ class LoginViewModel @Inject constructor(
             }
             _isLoading.value = true
             val newUser = authRepository.auth(email, password)
-            userRepository.fetchUser()
             _isLoading.value = false
             if (newUser) {
                 eventChannel.offer(Event.Registered)

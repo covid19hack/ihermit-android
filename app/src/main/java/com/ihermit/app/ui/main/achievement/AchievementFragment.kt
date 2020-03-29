@@ -31,12 +31,12 @@ class AchievementFragment : DaggerFragment(R.layout.achievement_fragment) {
                 achievements.withModels {
                     list.forEach { achievement ->
                         achievement {
-                            id(achievement._id)
+                            id(achievement.id)
                             achievement(achievement)
                             clickListener { model, _, _, _ ->
                                 findNavController().navigate(
                                     MainNavDirections.toAchievementDialogFragment(
-                                        model.achievement()._id
+                                        model.achievement().id
                                     )
                                 )
                             }

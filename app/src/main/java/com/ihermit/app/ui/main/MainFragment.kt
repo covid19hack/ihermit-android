@@ -70,12 +70,12 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
         viewModel.user.observe(
             viewLifecycleOwner,
             Observer { userProfile ->
-                nickName.text = userProfile.nickName
-                userProgress.text = userProfile.levelName
+                nickName.text = userProfile?.nickName
+                userProgress.text = userProfile?.levelName
                 streakDays.text = resources.getQuantityString(
                     R.plurals.streak_days,
-                    userProfile.streakDays,
-                    userProfile.streakDays
+                    userProfile?.streakDays ?: 0,
+                    userProfile?.streakDays ?: 0
                 )
             }
         )

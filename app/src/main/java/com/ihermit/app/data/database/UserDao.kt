@@ -14,7 +14,7 @@ interface UserDao {
             WHERE _id = :id
         """
     )
-    fun getUser(id: Long): Flow<UserProfile>
+    fun getUser(id: String): Flow<UserProfile>
 
     @Query(
         """
@@ -23,7 +23,7 @@ interface UserDao {
             WHERE _id = :id
         """
     )
-    suspend fun updateNickName(id: Long, nickName: String)
+    suspend fun updateNickName(id: String, nickName: String)
 
     @Insert(entity = UserProfile::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User)
