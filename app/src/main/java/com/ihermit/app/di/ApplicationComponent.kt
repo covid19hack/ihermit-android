@@ -20,7 +20,8 @@ import javax.inject.Singleton
         DataModule::class,
         MainModule::class,
         AuthModule::class,
-        WorkManagerModule::class
+        WorkManagerModule::class,
+        LocationModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<HermitApplication> {
