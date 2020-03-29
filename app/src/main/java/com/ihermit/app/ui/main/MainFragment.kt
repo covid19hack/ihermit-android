@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ihermit.app.R
-import com.ihermit.app.data.entity.streakDays
 import com.ihermit.app.databinding.MainFragmentBinding
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.collect
@@ -79,8 +78,8 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
                     )
                     streakDays.text = resources.getQuantityString(
                         R.plurals.streak_days,
-                        userProfile.streakDays ?: 0,
-                        userProfile.streakDays ?: 0
+                        userProfile.streakLength,
+                        userProfile.streakLength
                     )
                 }
             }
