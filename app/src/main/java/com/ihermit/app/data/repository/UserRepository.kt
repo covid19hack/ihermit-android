@@ -2,6 +2,7 @@ package com.ihermit.app.data.repository
 
 import com.ihermit.app.data.database.AchievementDao
 import com.ihermit.app.data.database.BreachDao
+import com.ihermit.app.data.database.HermitDatabase
 import com.ihermit.app.data.database.UserDao
 import com.ihermit.app.data.entity.Achievement
 import com.ihermit.app.data.entity.Breach
@@ -26,7 +27,8 @@ class UserRepository @Inject constructor(
     private val hermitService: HermitService,
     private val userDao: UserDao,
     private val achievementDao: AchievementDao,
-    private val breachDao: BreachDao
+    private val breachDao: BreachDao,
+    private val hermitDatabase: HermitDatabase
 ) {
 
     private suspend fun updateUser(user: User) {
@@ -121,5 +123,12 @@ class UserRepository @Inject constructor(
                 Timber.e(e)
             }
         }
+    }
+
+    suspend fun clear() = withContext(Dispatchers.IO) {
+        userPreference.authToken = null
+        userPreference.home = null
+        userPreference.userId = null
+        hermitDatabase.clearAllTables()
     }
 }

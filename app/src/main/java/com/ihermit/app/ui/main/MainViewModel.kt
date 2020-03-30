@@ -86,10 +86,10 @@ class MainViewModel @Inject constructor(
     }
 
     fun logout() {
-        userPreference.authToken = null
-        userPreference.home = null
-        userPreference.userId = null
-        eventChannel.offer(Event.LoggedOut)
+        viewModelScope.launch {
+            userRepository.clear()
+            eventChannel.offer(Event.LoggedOut)
+        }
     }
 
 }
