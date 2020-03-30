@@ -34,7 +34,7 @@ class AchievementDialogViewModel @Inject constructor(
     fun completeAchievement() {
         val achievement = achievement.value ?: return
         viewModelScope.launch {
-            if (!achievement.completed) {
+            if (!achievement.completed && achievement.userCanEdit) {
                 userRepository.updateAchievement(
                     achievement.copy(
                         progress = achievement.progress + 1

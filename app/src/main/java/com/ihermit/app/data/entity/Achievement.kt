@@ -14,5 +14,6 @@ data class Achievement(
     val progress: Int,
     val goal: Int,
     val points: Int,
-    val imgUrl: String?
+    val imgUrl: String?,
+    val userCanEdit: Boolean = false
 )
