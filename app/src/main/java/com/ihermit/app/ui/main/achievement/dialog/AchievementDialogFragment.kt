@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.ihermit.app.R
 import com.ihermit.app.databinding.AchievementDialogFragmentBinding
 import dagger.android.support.DaggerAppCompatDialogFragment
@@ -58,6 +59,11 @@ class AchievementDialogFragment : DaggerAppCompatDialogFragment() {
                         okBtn.text = getString(R.string.ok_btn_text)
                         cancelBtn.text = getString(R.string.dismiss_btn_text)
                         cancelBtn.isVisible = !achievement.completed
+                        Glide.with(badge)
+                            .load(achievement.imgUrl)
+                            .placeholder(R.drawable.image_placeholder)
+                            .error(R.drawable.image_placeholder)
+                            .into(badge)
                     }
                 }
             )

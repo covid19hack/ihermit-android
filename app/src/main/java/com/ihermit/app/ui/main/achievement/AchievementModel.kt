@@ -6,6 +6,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.bumptech.glide.Glide
 import com.ihermit.app.R
 import com.ihermit.app.data.entity.Achievement
 import com.ihermit.app.databinding.AchievementItemBinding
@@ -32,6 +33,11 @@ abstract class AchievementModel : EpoxyModelWithHolder<AchievementHolder>() {
             achievement.progress,
             achievement.goal
         )
+        Glide.with(holder.binding.badge)
+            .load(achievement.imgUrl)
+            .placeholder(R.drawable.image_placeholder)
+            .error(R.drawable.image_placeholder)
+            .into(holder.binding.badge)
     }
 }
 
