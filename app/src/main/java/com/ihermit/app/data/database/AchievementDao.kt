@@ -1,9 +1,6 @@
 package com.ihermit.app.data.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.ihermit.app.data.entity.Achievement
 import kotlinx.coroutines.flow.Flow
 
@@ -28,4 +25,7 @@ interface AchievementDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(achievements: List<Achievement>)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateAll(achievements: List<Achievement>)
 }

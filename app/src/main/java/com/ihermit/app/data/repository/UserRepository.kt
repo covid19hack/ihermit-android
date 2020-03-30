@@ -3,6 +3,7 @@ package com.ihermit.app.data.repository
 import com.ihermit.app.data.database.AchievementDao
 import com.ihermit.app.data.database.UserDao
 import com.ihermit.app.data.entity.Achievement
+import com.ihermit.app.data.entity.User
 import com.ihermit.app.data.entity.UserProfile
 import com.ihermit.app.data.network.HermitService
 import com.ihermit.app.data.network.request.CheckInRequest
@@ -22,6 +23,12 @@ class UserRepository @Inject constructor(
     private val userDao: UserDao,
     private val achievementDao: AchievementDao
 ) {
+
+    suspend fun updateUser(user: User) {
+        userDao.update(user)
+        achievementDao.updateAll(user.achievements)
+    }
+
     suspend fun fetchUser() = withContext(Dispatchers.IO) {
         val userId = userPreference.userId
         if (userId != null) {
@@ -49,8 +56,7 @@ class UserRepository @Inject constructor(
     }
 
     fun getAchievements(): Flow<List<Achievement>> {
-        val userId = userPreference.userId
-        return if (userId != null) {
+        return if (userPreference.userId != null) {
             achievementDao.getAllAchievements()
         } else {
             emptyFlow()
@@ -62,7 +68,16 @@ class UserRepository @Inject constructor(
     }
 
     suspend fun checkIn(isAtHome: Boolean) {
-        val user = hermitService.checkIn(CheckInRequest(isAtHome))
-        userDao.update(user)
+        if (userPreference.userId != null) {
+            val user = hermitService.checkIn(CheckInRequest(isAtHome))
+            updateUser(user)
+        }
+    }
+
+    suspend fun updateAchievement(achievement: Achievement) {
+        if (userPreference.userId != null) {
+            val user = hermitService.updateAchievement(achievement)
+            updateUser(user)
+        }
     }
 }
