@@ -78,6 +78,7 @@ class LocationWorker(context: Context, parameters: WorkerParameters) :
             .setContentText(context.getString(R.string.tracker_in_progress_description))
             .setSmallIcon(R.drawable.ic_my_location_black_24dp)
             .setOngoing(true)
+            .setNotificationSilent()
 //            .addAction(android.R.drawable.ic_delete, cancel, intent)
             .build()
 
