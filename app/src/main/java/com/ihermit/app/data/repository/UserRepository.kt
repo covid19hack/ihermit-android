@@ -1,6 +1,7 @@
 package com.ihermit.app.data.repository
 
 import com.ihermit.app.data.database.AchievementDao
+import com.ihermit.app.data.database.BreachDao
 import com.ihermit.app.data.database.UserDao
 import com.ihermit.app.data.entity.Achievement
 import com.ihermit.app.data.entity.User
@@ -22,12 +23,15 @@ class UserRepository @Inject constructor(
     private val userPreference: UserPreference,
     private val hermitService: HermitService,
     private val userDao: UserDao,
-    private val achievementDao: AchievementDao
+    private val achievementDao: AchievementDao,
+    private val breachDao: BreachDao
 ) {
 
-    suspend fun updateUser(user: User) {
+    private suspend fun updateUser(user: User) {
         userDao.update(user)
         achievementDao.updateAll(user.achievements)
+        breachDao.deleteAll()
+        breachDao.insertAll(user.breaches)
     }
 
     suspend fun fetchUser() = withContext(Dispatchers.IO) {

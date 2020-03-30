@@ -2,6 +2,7 @@ package com.ihermit.app.data.database
 
 import android.content.Context
 import androidx.room.Room
+import com.ihermit.app.data.entity.Breach
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -24,4 +25,8 @@ object DatabaseModule {
     @Provides
     fun providesAchievementDao(hermitDatabase: HermitDatabase): AchievementDao =
         hermitDatabase.achievementDao()
+
+    @Provides
+    fun providesBreachDao(hermitDatabase: HermitDatabase): BreachDao =
+        hermitDatabase.breachDao()
 }

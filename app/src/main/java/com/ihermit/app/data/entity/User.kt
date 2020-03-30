@@ -31,5 +31,7 @@ data class User(
     val streakLength: Int,
     val numOfReasonableBreaches: Int = 0,
     @Ignore
-    val achievements: List<Achievement>
+    val achievements: List<Achievement>,
+    @Ignore
+    val breaches: List<Breach>
 )
