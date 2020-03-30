@@ -38,6 +38,10 @@
     <string name="challenge_of_the_day">Challenge of the day</string>
     <string name="leaderboard_coming_soon">Leaderboard coming soon!</string>
     <string name="login_subtitle">To get started, enter your email address and password</string>
-    <string name="login_title">Hi there</string>
+    <string name="login_title">Let\'s log in</string>
     <string name="nick_name_title">Your profile</string>
+    <string name="first_title">Hi there</string>
+    <string name="first_description_one">so you can’t wait to see your friends again but because of the virus you can’t? Let’s save the world together alone…</string>
+    <string name="first_description_two">by staying at home.</string>
+    <string name="sign_me_up">Sign me up!</string>
 </resources>

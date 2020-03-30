@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_nav"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/firstFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -55,6 +55,15 @@
         <action
             android:id="@+id/to_locationPermissionFragment"
             app:destination="@id/locationPermissionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.ihermit.app.ui.auth.first.FirstFragment"
+        android:label="FirstFragment"
+        tools:layout="@layout/first_fragment">
+        <action
+            android:id="@+id/to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
 </navigation>
