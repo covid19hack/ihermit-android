@@ -26,4 +26,7 @@
     <string name="tracker_in_progress_description">TODO: Looking at your house</string>
     <string name="tracker_title">TODO: Home</string>
     <string name="please_accept_permission">TODO: Needs location to work.</string>
+    <string name="achievement_unlocked_title">Achievement</string>
+    <string name="dismiss_btn_text">Dismiss</string>
+    <string name="ok_btn_text">Nice</string>
 </resources>
