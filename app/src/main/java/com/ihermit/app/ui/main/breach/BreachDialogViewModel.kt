@@ -19,6 +19,9 @@ class BreachDialogViewModel @Inject constructor(
         object Completed : Event()
     }
 
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val eventChannel = BroadcastChannel<Event>(Channel.CONFLATED)
     val events = eventChannel.asFlow()
 
@@ -35,7 +38,9 @@ class BreachDialogViewModel @Inject constructor(
         viewModelScope.launch {
             val id = breach.value?._id
             if (id != null) {
+                _isLoading.value = true
                 userRepository.dismissBreach(id, dismiss)
+                _isLoading.value = false
             }
             eventChannel.offer(Event.Completed)
         }

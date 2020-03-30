@@ -67,6 +67,11 @@ class AchievementDialogFragment : DaggerAppCompatDialogFragment() {
                     }
                 }
             )
+        viewModel.isLoading.observe(viewLifecycleOwner,
+            Observer { isLoading ->
+                okBtn.isEnabled = !isLoading
+                cancelBtn.isEnabled = !isLoading
+            })
         viewLifecycleOwner.lifecycleScope
             .launch {
                 viewModel.events.collect { event ->

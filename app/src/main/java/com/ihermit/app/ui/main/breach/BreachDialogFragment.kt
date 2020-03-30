@@ -72,6 +72,11 @@ class BreachDialogFragment : DaggerAppCompatDialogFragment() {
                         }
                     }
             }
+        viewModel.isLoading.observe(viewLifecycleOwner,
+            Observer { isLoading ->
+                okBtn.isEnabled = !isLoading
+                cancelBtn.isEnabled = !isLoading
+            })
         viewModel.getBreach(args.id)
         okBtn.setOnClickListener {
             viewModel.dismissBreach(true)

@@ -19,6 +19,9 @@ class AchievementDialogViewModel @Inject constructor(
         object Completed : Event()
     }
 
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val _achievement = MutableLiveData<Achievement?>()
     val achievement: LiveData<Achievement?> = _achievement
 
@@ -35,11 +38,13 @@ class AchievementDialogViewModel @Inject constructor(
         val achievement = achievement.value ?: return
         viewModelScope.launch {
             if (!achievement.completed && achievement.userCanEdit) {
+                _isLoading.value = true
                 userRepository.updateAchievement(
                     achievement.copy(
                         progress = achievement.progress + 1
                     )
                 )
+                _isLoading.value = false
             }
             eventChannel.offer(Event.Completed)
         }

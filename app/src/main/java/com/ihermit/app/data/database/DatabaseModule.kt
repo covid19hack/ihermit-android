@@ -13,9 +13,10 @@ object DatabaseModule {
     @Singleton
     fun providesDatabase(applicationContext: Context): HermitDatabase {
         // TODO(malvinstn): Move to actual DB.
-        return Room.inMemoryDatabaseBuilder(
+        return Room.databaseBuilder(
             applicationContext,
-            HermitDatabase::class.java
+            HermitDatabase::class.java,
+            "hermit_app"
         ).build()
     }
 
