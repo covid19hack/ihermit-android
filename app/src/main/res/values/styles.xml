@@ -92,12 +92,14 @@
     </style>
 
     <style name="TextAppearance.AppTheme.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:includeFontPadding">false</item>
         <item name="fontFamily">@font/fira_sans_semibold</item>
         <item name="android:fontFamily">@font/fira_sans_semibold</item>
     </style>
 
     <style name="TextAppearance.AppTheme.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:includeFontPadding">false</item>
         <item name="fontFamily">@font/fira_sans_semibold</item>
         <item name="android:fontFamily">@font/fira_sans_semibold</item>
