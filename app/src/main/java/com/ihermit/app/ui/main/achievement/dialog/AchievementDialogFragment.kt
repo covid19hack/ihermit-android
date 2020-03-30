@@ -8,10 +8,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.ihermit.app.R
 import com.ihermit.app.databinding.AchievementDialogFragmentBinding
 import dagger.android.support.DaggerAppCompatDialogFragment
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AchievementDialogFragment : DaggerAppCompatDialogFragment() {
@@ -58,6 +61,18 @@ class AchievementDialogFragment : DaggerAppCompatDialogFragment() {
                     }
                 }
             )
+        viewLifecycleOwner.lifecycleScope
+            .launch {
+                viewModel.events.collect { event ->
+                    when (event) {
+                        AchievementDialogViewModel.Event.Completed -> {
+                            dismiss()
+                        }
+                    }
+                }
+            }
+        cancelBtn.setOnClickListener { dismiss() }
+        okBtn.setOnClickListener { viewModel.completeAchievement() }
         viewModel.fetchAchievement(args.id)
     }
 }

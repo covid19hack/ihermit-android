@@ -6,18 +6,43 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ihermit.app.data.entity.Achievement
 import com.ihermit.app.data.repository.UserRepository
+import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AchievementDialogViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
+    sealed class Event {
+        object Completed : Event()
+    }
+
     private val _achievement = MutableLiveData<Achievement?>()
     val achievement: LiveData<Achievement?> = _achievement
+
+    private val eventChannel = BroadcastChannel<Event>(Channel.CONFLATED)
+
+    val events = eventChannel.asFlow()
 
     fun fetchAchievement(id: Long) {
         viewModelScope.launch {
             _achievement.value = userRepository.getAchievement(id)
+        }
+    }
+
+    fun completeAchievement() {
+        val achievement = achievement.value ?: return
+        viewModelScope.launch {
+            if (!achievement.completed) {
+                userRepository.updateAchievement(
+                    achievement.copy(
+                        progress = achievement.progress + 1
+                    )
+                )
+            }
+            eventChannel.offer(Event.Completed)
         }
     }
 }
