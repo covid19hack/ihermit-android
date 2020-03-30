@@ -5,7 +5,7 @@
     <string name="auth_btn">Continue</string>
     <string name="title_activity_maps">Map</string>
     <string name="location_title">To continue, we need your location</string>
-    <string name="location_rationale">Your privacy is very important to us. We use your location to set a reference for where you will be staying at home. We don\'t store any of your location data.</string>
+    <string name="location_rationale">Your privacy is very important to us. We use your location to set a reference for where you will be staying at home and the app will periodically check your current location against that location. Your location data will not leave your device and we don\'t store any of your location data.</string>
     <string name="location_permission">Grant permission</string>
     <string name="home_set">Use this as my home location</string>
     <string name="current_streak">Your current streak</string>
