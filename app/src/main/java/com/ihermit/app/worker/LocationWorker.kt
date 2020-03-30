@@ -61,7 +61,7 @@ class LocationWorker(context: Context, parameters: WorkerParameters) :
                 val distance = lastLocation.distanceTo(homeLocation)
                 Timber.d("Distance: $distance")
                 val isAtHome = distance <= Constants.HOME_RADIUS_IN_METER
-                userRepository.checkIn(isAtHome)
+                userRepository.checkIn(false)
             } catch (e: Exception) {
                 return Result.failure()
             }

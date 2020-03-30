@@ -10,6 +10,7 @@ import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,13 +24,32 @@ class MainViewModel @Inject constructor(
 
     private val _user = MutableLiveData<UserProfile?>()
     val user: LiveData<UserProfile?> = _user
-    private val _breaches = MutableLiveData<Breach?>()
+    private val _breach = MutableLiveData<Breach?>()
     private val _daily = MutableLiveData<Achievement?>()
     private val _actionItems = MediatorLiveData<List<ActionItem>>().apply {
-        addSource(_breaches) { breach: Breach? ->
-            if (breach != null) {
-                value = listOf(ActionItem.BreachAction(breach))
+        addSource(_breach) { breach: Breach? ->
+            val list: MutableList<ActionItem> = if (breach != null) {
+                mutableListOf(ActionItem.BreachAction(breach))
+            } else {
+                mutableListOf()
             }
+            val daily = _daily.value
+            if (daily != null) {
+                list += ActionItem.NonCompletedAchievement(daily)
+            }
+            value = list
+        }
+        addSource(_daily) { achievement: Achievement? ->
+            val list: MutableList<ActionItem> = if (achievement != null) {
+                mutableListOf(ActionItem.NonCompletedAchievement(achievement))
+            } else {
+                mutableListOf()
+            }
+            val breach = _breach.value
+            if (breach != null) {
+                list += ActionItem.BreachAction(breach)
+            }
+            value = list
         }
     }
     val actionItems: LiveData<List<ActionItem>> = _actionItems
@@ -50,8 +70,18 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             userRepository.getAllBreaches()
                 .collect {
-                    _breaches.value = it.lastOrNull()
+                    _breach.value = it.lastOrNull()
                 }
+        }
+        viewModelScope.launch {
+            userRepository.getAchievements()
+                .map { achievements -> achievements.filter { !it.completed } }
+                .collect { nonCompleted ->
+                    if (nonCompleted.isNotEmpty()) {
+                        _daily.value = nonCompleted.random()
+                    }
+                }
+
         }
     }
 

@@ -25,6 +25,6 @@ interface HermitService {
     @PATCH("users/achievement")
     suspend fun updateAchievement(@Body achievement: Achievement): User
 
-    @PATCH("checkIns/{breachId}/dismissBreach")
+    @PATCH("checkIns/{breachId}")
     suspend fun dismissBreach(@Path("breachId") breachId: String, @Body dismissRequest: DismissRequest): User
 }

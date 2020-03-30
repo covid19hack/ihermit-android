@@ -36,7 +36,7 @@ class HermitApplication : DaggerApplication() {
             "locationWorker",
             ExistingPeriodicWorkPolicy.REPLACE,
             PeriodicWorkRequestBuilder<LocationWorker>(
-                60, TimeUnit.MINUTES,
+//                60, TimeUnit.MINUTES,
                 15, TimeUnit.MINUTES
             ).build()
         )

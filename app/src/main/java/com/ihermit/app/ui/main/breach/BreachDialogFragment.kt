@@ -52,6 +52,7 @@ class BreachDialogFragment : DaggerAppCompatDialogFragment() {
         viewModel.breach.observe(viewLifecycleOwner,
             Observer { breach ->
                 if (breach != null) {
+                    badge.setImageResource(R.drawable.image_breach)
                     okBtn.text = getString(R.string.breach_dialog_ok_btn_title)
                     cancelBtn.text = getString(R.string.breach_dialog_cancel_btn_title)
                     name.text = getString(R.string.breach_dialog_name)
