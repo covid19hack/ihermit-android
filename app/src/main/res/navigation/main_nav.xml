@@ -25,10 +25,19 @@
         android:id="@+id/achievementDialogFragment"
         android:name="com.ihermit.app.ui.main.achievement.dialog.AchievementDialogFragment"
         android:label="AchievementDialogFragment"
-        tools:layout="@layout/achievement_dialog_fragment">
+        tools:layout="@layout/reusable_dialog_fragment">
         <argument
             android:name="id"
             app:argType="long" />
+    </dialog>
+    <dialog
+        android:id="@+id/breachDialogFragment"
+        android:name="com.ihermit.app.ui.main.breach.BreachDialogFragment"
+        android:label="BreachDialogFragment"
+        tools:layout="@layout/reusable_dialog_fragment">
+        <argument
+            android:name="id"
+            app:argType="string" />
     </dialog>
     <action
         android:id="@+id/to_achievementDialogFragment"

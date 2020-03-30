@@ -4,10 +4,12 @@ import com.ihermit.app.data.database.AchievementDao
 import com.ihermit.app.data.database.BreachDao
 import com.ihermit.app.data.database.UserDao
 import com.ihermit.app.data.entity.Achievement
+import com.ihermit.app.data.entity.Breach
 import com.ihermit.app.data.entity.User
 import com.ihermit.app.data.entity.UserProfile
 import com.ihermit.app.data.network.HermitService
 import com.ihermit.app.data.network.request.CheckInRequest
+import com.ihermit.app.data.network.request.DismissRequest
 import com.ihermit.app.data.network.request.UpdateUserRequestBody
 import com.ihermit.app.data.preference.UserPreference
 import kotlinx.coroutines.Dispatchers
@@ -99,6 +101,17 @@ class UserRepository @Inject constructor(
             } catch (e: Exception) {
                 Timber.e(e)
             }
+        }
+    }
+
+    suspend fun getBreach(id: String): Breach {
+        return breachDao.getBreach(id)
+    }
+
+    suspend fun dismissBreach(id: String, dismiss: Boolean) {
+        if (userPreference.userId != null) {
+            val user = hermitService.dismissBreach(id, DismissRequest(dismiss))
+            updateUser(user)
         }
     }
 }

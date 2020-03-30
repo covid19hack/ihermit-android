@@ -6,6 +6,7 @@ import com.ihermit.app.data.DataModule
 import com.ihermit.app.ui.auth.AuthModule
 import com.ihermit.app.ui.main.MainModule
 import com.ihermit.app.ui.main.achievement.dialog.AchievementDialogModule
+import com.ihermit.app.ui.main.breach.BreachDialogModule
 import com.ihermit.app.worker.WorkManagerModule
 import dagger.BindsInstance
 import dagger.Component
@@ -21,6 +22,7 @@ import javax.inject.Singleton
         DataModule::class,
         MainModule::class,
         AchievementDialogModule::class,
+        BreachDialogModule::class,
         AuthModule::class,
         WorkManagerModule::class,
         LocationModule::class

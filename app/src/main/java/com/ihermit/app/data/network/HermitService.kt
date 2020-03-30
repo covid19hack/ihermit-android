@@ -5,11 +5,9 @@ import com.ihermit.app.data.entity.AuthResponse
 import com.ihermit.app.data.entity.User
 import com.ihermit.app.data.network.request.AuthRequest
 import com.ihermit.app.data.network.request.CheckInRequest
+import com.ihermit.app.data.network.request.DismissRequest
 import com.ihermit.app.data.network.request.UpdateUserRequestBody
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface HermitService {
     @POST("users/authenticate")
@@ -28,5 +26,5 @@ interface HermitService {
     suspend fun updateAchievement(@Body achievement: Achievement): User
 
     @PATCH("checkIns/{breachId}/dismissBreach")
-    suspend fun dismissBreach(): User
+    suspend fun dismissBreach(@Path("breachId") breachId: String, @Body dismissRequest: DismissRequest): User
 }

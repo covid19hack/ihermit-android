@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.ihermit.app.R
-import com.ihermit.app.databinding.AchievementDialogFragmentBinding
+import com.ihermit.app.databinding.ReusableDialogFragmentBinding
 import dagger.android.support.DaggerAppCompatDialogFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -39,15 +39,15 @@ class AchievementDialogFragment : DaggerAppCompatDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.achievement_dialog_fragment, container, false)
+        return inflater.inflate(R.layout.reusable_dialog_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AchievementDialogFragmentBinding.bind(view).setup()
+        ReusableDialogFragmentBinding.bind(view).setup()
     }
 
-    private fun AchievementDialogFragmentBinding.setup() {
+    private fun ReusableDialogFragmentBinding.setup() {
         viewModel.achievement
             .observe(
                 viewLifecycleOwner,

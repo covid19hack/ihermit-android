@@ -29,4 +29,8 @@
     <string name="achievement_unlocked_title">Achievement</string>
     <string name="dismiss_btn_text">Dismiss</string>
     <string name="ok_btn_text">Nice</string>
+    <string name="breach_dialog_title">Breach detected</string>
+    <string name="breach_dialog_cancel_btn_title">I broke quarantine</string>
+    <string name="breach_dialog_ok_btn_title">I had a good reason</string>
+    <string name="breach_dialog_description">We detected that you left the perimeter of your house at %1$s</string>
 </resources>
