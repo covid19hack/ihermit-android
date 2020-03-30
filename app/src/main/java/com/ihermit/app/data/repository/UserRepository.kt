@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -32,17 +33,25 @@ class UserRepository @Inject constructor(
     suspend fun fetchUser() = withContext(Dispatchers.IO) {
         val userId = userPreference.userId
         if (userId != null) {
-            val user = hermitService.getUser()
-            userDao.insert(user)
-            achievementDao.insertAll(user.achievements)
+            try {
+                val user = hermitService.getUser()
+                userDao.insert(user)
+                achievementDao.insertAll(user.achievements)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
         }
     }
 
     suspend fun updateNickName(nickName: String) = withContext(Dispatchers.IO) {
         val userId = userPreference.userId
         if (userId != null) {
-            hermitService.updateNickName(UpdateUserRequestBody(nickName))
-            userDao.updateNickName(userId, nickName)
+            try {
+                hermitService.updateNickName(UpdateUserRequestBody(nickName))
+                userDao.updateNickName(userId, nickName)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
         }
     }
 
@@ -69,15 +78,23 @@ class UserRepository @Inject constructor(
 
     suspend fun checkIn(isAtHome: Boolean) {
         if (userPreference.userId != null) {
-            val user = hermitService.checkIn(CheckInRequest(isAtHome))
-            updateUser(user)
+            try {
+                val user = hermitService.checkIn(CheckInRequest(isAtHome))
+                updateUser(user)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
         }
     }
 
     suspend fun updateAchievement(achievement: Achievement) {
         if (userPreference.userId != null) {
-            val user = hermitService.updateAchievement(achievement)
-            updateUser(user)
+            try {
+                val user = hermitService.updateAchievement(achievement)
+                updateUser(user)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
         }
     }
 }
