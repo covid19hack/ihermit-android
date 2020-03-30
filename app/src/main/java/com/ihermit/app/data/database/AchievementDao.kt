@@ -10,6 +10,9 @@ interface AchievementDao {
         """
             SELECT *
             FROM Achievement
+            ORDER BY 
+                completed DESC,
+                id ASC
         """
     )
     fun getAllAchievements(): Flow<List<Achievement>>
