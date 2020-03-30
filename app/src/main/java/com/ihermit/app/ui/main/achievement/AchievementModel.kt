@@ -38,6 +38,7 @@ abstract class AchievementModel : EpoxyModelWithHolder<AchievementHolder>() {
             .placeholder(R.drawable.image_placeholder)
             .error(R.drawable.image_placeholder)
             .into(holder.binding.badge)
+        holder.binding.badge.alpha = if (achievement.completed) 1.0F else 0.3F
     }
 }
 
