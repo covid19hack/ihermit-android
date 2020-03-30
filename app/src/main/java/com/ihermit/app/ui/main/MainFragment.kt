@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
+import com.ihermit.app.MainNavDirections
 import com.ihermit.app.R
 import com.ihermit.app.databinding.MainFragmentBinding
 import dagger.android.support.DaggerFragment
@@ -85,5 +86,48 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
             }
         )
 
+        viewModel.actionItems
+            .observe(viewLifecycleOwner,
+                Observer { items ->
+                    updateActionItems(items)
+                }
+            )
+
+    }
+
+    private fun MainFragmentBinding.updateActionItems(items: List<ActionItem>) {
+        actions.withModels {
+            items.forEach { item ->
+                actionItem {
+                    when (item) {
+                        is ActionItem.BreachAction -> {
+                            id(item.breach._id)
+                        }
+                        is ActionItem.NonCompletedAchievement -> {
+                            id(item.achievement.id)
+                        }
+                    }
+                    actionItem(item)
+                    clickListener { model, _, _, _ ->
+                        when (val item = model.actionItem()) {
+                            is ActionItem.BreachAction -> {
+                                findNavController().navigate(
+                                    MainNavDirections.toBreachDialogFragment(
+                                        item.breach._id
+                                    )
+                                )
+                            }
+                            is ActionItem.NonCompletedAchievement -> {
+                                findNavController().navigate(
+                                    MainNavDirections.toAchievementDialogFragment(
+                                        item.achievement.id
+                                    )
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

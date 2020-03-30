@@ -1,9 +1,8 @@
 package com.ihermit.app.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.ihermit.app.data.entity.Achievement
+import com.ihermit.app.data.entity.Breach
 import com.ihermit.app.data.entity.UserProfile
 import com.ihermit.app.data.preference.UserPreference
 import com.ihermit.app.data.repository.UserRepository
@@ -24,6 +23,16 @@ class MainViewModel @Inject constructor(
 
     private val _user = MutableLiveData<UserProfile?>()
     val user: LiveData<UserProfile?> = _user
+    private val _breaches = MutableLiveData<Breach?>()
+    private val _daily = MutableLiveData<Achievement?>()
+    private val _actionItems = MediatorLiveData<List<ActionItem>>().apply {
+        addSource(_breaches) { breach: Breach? ->
+            if (breach != null) {
+                value = listOf(ActionItem.BreachAction(breach))
+            }
+        }
+    }
+    val actionItems: LiveData<List<ActionItem>> = _actionItems
 
     private val eventChannel = BroadcastChannel<Event>(Channel.CONFLATED)
     val events = eventChannel.asFlow()
@@ -37,6 +46,12 @@ class MainViewModel @Inject constructor(
         }
         viewModelScope.launch {
             userRepository.fetchUser()
+        }
+        viewModelScope.launch {
+            userRepository.getAllBreaches()
+                .collect {
+                    _breaches.value = it.lastOrNull()
+                }
         }
     }
 

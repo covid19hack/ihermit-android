@@ -104,14 +104,22 @@ class UserRepository @Inject constructor(
         }
     }
 
+    fun getAllBreaches(): Flow<List<Breach>> {
+        return breachDao.getAllBreaches()
+    }
+
     suspend fun getBreach(id: String): Breach {
         return breachDao.getBreach(id)
     }
 
     suspend fun dismissBreach(id: String, dismiss: Boolean) {
         if (userPreference.userId != null) {
-            val user = hermitService.dismissBreach(id, DismissRequest(dismiss))
-            updateUser(user)
+            try {
+                val user = hermitService.dismissBreach(id, DismissRequest(dismiss))
+                updateUser(user)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
         }
     }
 }

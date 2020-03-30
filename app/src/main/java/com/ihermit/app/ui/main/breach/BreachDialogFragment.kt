@@ -13,17 +13,16 @@ import androidx.navigation.fragment.navArgs
 import com.ihermit.app.R
 import com.ihermit.app.databinding.ReusableDialogFragmentBinding
 import dagger.android.support.DaggerAppCompatDialogFragment
-import dagger.android.support.DaggerDialogFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
-class BreachDialogFragment : DaggerDialogFragment() {
+class BreachDialogFragment : DaggerAppCompatDialogFragment() {
 
     init {
         setStyle(
-            DaggerAppCompatDialogFragment.STYLE_NORMAL,
+            STYLE_NORMAL,
             R.style.AppTheme_Dialog
         )
     }
@@ -55,6 +54,7 @@ class BreachDialogFragment : DaggerDialogFragment() {
                 if (breach != null) {
                     okBtn.text = getString(R.string.breach_dialog_ok_btn_title)
                     cancelBtn.text = getString(R.string.breach_dialog_cancel_btn_title)
+                    name.text = getString(R.string.breach_dialog_name)
                     description.text = getString(
                         R.string.breach_dialog_description, format.format(breach.createdAt)
                     )

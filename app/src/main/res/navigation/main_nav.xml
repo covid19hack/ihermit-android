@@ -42,4 +42,7 @@
     <action
         android:id="@+id/to_achievementDialogFragment"
         app:destination="@id/achievementDialogFragment" />
+    <action
+        android:id="@+id/to_breachDialogFragment"
+        app:destination="@id/breachDialogFragment" />
 </navigation>
