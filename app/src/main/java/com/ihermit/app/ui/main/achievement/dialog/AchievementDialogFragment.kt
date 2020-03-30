@@ -53,7 +53,7 @@ class AchievementDialogFragment : DaggerAppCompatDialogFragment() {
                 viewLifecycleOwner,
                 Observer { achievement ->
                     if (achievement != null) {
-                        title.text = getString(R.string.achievement_unlocked_title)
+                        title.setText(if (achievement.completed) R.string.achievement_unlocked_title else R.string.achievement_title)
                         name.text = achievement.title
                         description.text = achievement.description
                         okBtn.setText(if (achievement.userCanEdit) R.string.achievement_ok_btn_text_editable else R.string.achievement_ok_btn_text)

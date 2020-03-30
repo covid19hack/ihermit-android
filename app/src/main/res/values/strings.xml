@@ -26,7 +26,8 @@
     <string name="tracker_in_progress_description">Checking for location…</string>
     <string name="tracker_title">@string/app_name</string>
     <string name="please_accept_permission">This app needs to access your location to work.</string>
-    <string name="achievement_unlocked_title">Achievement</string>
+    <string name="achievement_title">Achievement</string>
+    <string name="achievement_unlocked_title">Achievement Unlocked</string>
     <string name="achievement_dismiss_btn_text">Dismiss</string>
     <string name="achievement_ok_btn_text">Nice</string>
     <string name="achievement_ok_btn_text_editable">I\'ve completed this</string>
