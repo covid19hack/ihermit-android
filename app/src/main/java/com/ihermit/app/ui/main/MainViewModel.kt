@@ -75,7 +75,7 @@ class MainViewModel @Inject constructor(
         }
         viewModelScope.launch {
             userRepository.getAchievements()
-                .map { achievements -> achievements.filter { !it.completed } }
+                .map { achievements -> achievements.filter { !it.completed && it.userCanEdit } }
                 .collect { nonCompleted ->
                     if (nonCompleted.isNotEmpty()) {
                         _daily.value = nonCompleted.random()
