@@ -75,7 +75,8 @@ class MainFragment : DaggerFragment(R.layout.main_fragment) {
                     userProgress.text = getString(
                         R.string.user_progress,
                         userProfile.levelNumber,
-                        userProfile.levelName
+                        userProfile.levelName,
+                        userProfile.points
                     )
                     streakDays.text = resources.getQuantityString(
                         R.plurals.streak_days,

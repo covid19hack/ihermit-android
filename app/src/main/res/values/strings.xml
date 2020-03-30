@@ -21,7 +21,7 @@
         <item quantity="one">%1$d day</item>
         <item quantity="other">%1$d days</item>
     </plurals>
-    <string name="user_progress">Level %1$d: %2$s</string>
+    <string name="user_progress">Level %1$d: %2$s | %3$d pts</string>
     <string name="not_valid_email">Not a valid email</string>
     <string name="tracker_in_progress_description">Checking for location…</string>
     <string name="tracker_title">@string/app_name</string>
