@@ -27,8 +27,9 @@
     <string name="tracker_title">@string/app_name</string>
     <string name="please_accept_permission">This app needs to access your location to work.</string>
     <string name="achievement_unlocked_title">Achievement</string>
-    <string name="dismiss_btn_text">Dismiss</string>
-    <string name="ok_btn_text">Nice</string>
+    <string name="achievement_dismiss_btn_text">Dismiss</string>
+    <string name="achievement_ok_btn_text">Nice</string>
+    <string name="achievement_ok_btn_text_editable">I\'ve completed this</string>
     <string name="breach_dialog_title">Breach detected</string>
     <string name="breach_dialog_cancel_btn_title">I broke quarantine</string>
     <string name="breach_dialog_ok_btn_title">I had a good reason</string>

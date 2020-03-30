@@ -56,8 +56,8 @@ class AchievementDialogFragment : DaggerAppCompatDialogFragment() {
                         title.text = getString(R.string.achievement_unlocked_title)
                         name.text = achievement.title
                         description.text = achievement.description
-                        okBtn.text = getString(R.string.ok_btn_text)
-                        cancelBtn.text = getString(R.string.dismiss_btn_text)
+                        okBtn.setText(if (achievement.userCanEdit) R.string.achievement_ok_btn_text_editable else R.string.achievement_ok_btn_text)
+                        cancelBtn.text = getString(R.string.achievement_dismiss_btn_text)
                         cancelBtn.isVisible = !achievement.completed
                         Glide.with(badge)
                             .load(achievement.imgUrl)
