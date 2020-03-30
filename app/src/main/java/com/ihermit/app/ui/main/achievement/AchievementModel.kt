@@ -26,8 +26,8 @@ abstract class AchievementModel : EpoxyModelWithHolder<AchievementHolder>() {
         val isProgressVisible = achievement.goal > 1
         holder.binding.progress.isVisible = isProgressVisible
         holder.binding.progressText.isVisible = isProgressVisible
-        holder.binding.progress.progress = achievement.progress
         holder.binding.progress.max = achievement.goal
+        holder.binding.progress.progress = achievement.progress
         holder.binding.progressText.text = holder.binding.root.context.getString(
             R.string.progress_text_format,
             achievement.progress,
